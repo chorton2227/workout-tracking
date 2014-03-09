@@ -1,7 +1,8 @@
-# Laravel Starter
-[![Build Status](https://travis-ci.org/chorton2227/laravel-starter.png)](https://travis-ci.org/chorton2227/laravel-starter)
+# Workout Tracking
+[![Build Status](https://travis-ci.org/chorton2227/workout-tracking.png)](https://travis-ci.org/chorton2227/workout-tracking)
 
-Laravel Starter is a starter application for [Laravel 4](http://laravel.com/).
+Workout Tracking is a [Laravel 4](http://laravel.com/) application for tracking workouts.
+Use [Laravel Starter](https://github.com/chorton2227/laravel-starter).
 
 ## Features
 
