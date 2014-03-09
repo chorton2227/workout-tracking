@@ -12,7 +12,8 @@
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
 		"twbs/bootstrap-sass": "v3.1.1",
-		"summerstreet/woodling": "0.1.*"
+		"summerstreet/woodling": "0.1.*",
+		"way/generators": "2.*"
 	},
 	"autoload": {
 		"classmap": [
