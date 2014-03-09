@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/chorton2227/workout-tracking.png)](https://travis-ci.org/chorton2227/workout-tracking)
 
 Workout Tracking is a [Laravel 4](http://laravel.com/) application for tracking workouts.
-Use [Laravel Starter](https://github.com/chorton2227/laravel-starter).
+Uses [Laravel Starter](https://github.com/chorton2227/laravel-starter).
 
 ## Features
 
