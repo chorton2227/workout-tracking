@@ -107,4 +107,38 @@ class UserTest extends TestCase {
 		$this->assertEquals(0, $user->roles()->count());
 	}
 
+	/**
+	 * Test routine association.
+	 */
+	public function testRoutineAssociation()
+	{
+		$user = Woodling::saved('User');
+		$routine = Woodling::retrieve('Routine');
+		$user->routines()->save($routine);
+
+		// Check if routine was saved
+		$this->assertEquals(1, $user->routines()->count());
+	}
+
+	/**
+	 * Test what happens to routine associations when user is deleted.
+	 * Routines should be deleted with the user.
+	 */
+	public function testDeleteRoutineAssociation()
+	{
+		$user = Woodling::saved('User');
+		$routine = Woodling::retrieve('Routine');
+		$user->routines()->save($routine);
+		$user_id = $user->id;
+
+		// Check if routine was saved
+		$this->assertEquals(1, $user->routines()->count());
+
+		// User should delete successfully
+		$this->assertTrue($user->delete());
+
+		// Deleted User should not have any routines
+		$this->assertEquals(0, Routine::where('user_id', $user_id)->count());
+	}
+
 }
