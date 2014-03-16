@@ -14,4 +14,5 @@ Woodling::seed('Routine', array('class' => 'Routine', 'do' => function($blueprin
 	});
 	$blueprint->created_at = Carbon::now();
 	$blueprint->updated_at = Carbon::now()->addMonths(2);
+	$blueprint->user_id = function() { return Woodling::saved('User')->id; };
 }));

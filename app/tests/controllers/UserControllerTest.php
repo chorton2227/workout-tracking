@@ -51,7 +51,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testCreateRedirect()
 	{
-		$user = Woodling::retrieve('Admin');
+		$user = Woodling::retrieve('User');
 
 		// Retrieve credentials before saving, for plaintext password
 		$params = array(
@@ -84,7 +84,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testLoginRedirect()
 	{
-		$user = Woodling::retrieve('Admin');
+		$user = Woodling::retrieve('User');
 
 		// Retrieve credentials before saving, for plaintext password
 		$params = array(
@@ -108,7 +108,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testDoLoginValid()
 	{
-		$user = Woodling::retrieve('Admin');
+		$user = Woodling::retrieve('User');
 
 		// Retrieve credentials before saving, for plaintext password
 		$params = array(
@@ -143,7 +143,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testConfirmCodeValid()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 
 		$this->call('GET', 'user/confirm/' . $user->confirmation_code);
 		$this->assertRedirectedTo('user/login');
@@ -174,7 +174,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testDoForgotPasswordValid()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$params = array(
 			'email' => $user->email,
 		);
@@ -203,7 +203,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testResetPassword()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		Confide::forgotPassword($user->email);
 		$passwordReminder = PasswordReminders::where('email', $user->email)->first();
 
@@ -216,7 +216,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testDoResetPasswordValid()
 	{
-		$user = Woodling::retrieve('Admin');
+		$user = Woodling::retrieve('User');
 
 		// Retrieve credentials before saving, for plaintext password
 		$params = array(
@@ -256,7 +256,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testProfile()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$this->call('GET', 'profile/'.$user->username);
 		$this->assertResponseOk();
 	}

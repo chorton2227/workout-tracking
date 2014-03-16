@@ -21,14 +21,14 @@ class RoutineTest extends TestCase {
 	public function testRequiresUserAssociation()
 	{
 		$routine = Woodling::retrieve('Routine');
+		$routine->user_id = null;
 		$this->assertFalse($routine->save());
 	}
 
 	public function testUserAssociation()
 	{
-		$routine = Woodling::retrieve('Routine');
-		$user = Woodling::saved('Admin');
-		$routine = $user->routines()->save($routine);
+		$routine = Woodling::saved('Routine');
+		$user = User::find($routine->user->id);
 		$this->assertEquals($routine->user->username, $user->username);
 	}
 

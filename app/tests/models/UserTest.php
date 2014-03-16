@@ -5,20 +5,11 @@ use Woodling\Woodling;
 class UserTest extends TestCase {
 
 	/**
-	 * Test Woodling fixture for admin.
-	 */
-	public function testAdminFixture()
-	{
-		$user = Woodling::retrieve('Admin');
-		$this->assertEquals($user->username, 'admin');
-	}
-
-	/**
 	 * Make sure the delete method removes all asigned roles for the user.
 	 */
 	public function testDeleteAssignedRoles()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -42,7 +33,7 @@ class UserTest extends TestCase {
 	 */
 	public function testGetRoleIds()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 
@@ -59,7 +50,7 @@ class UserTest extends TestCase {
 	 */
 	public function testGetRoleIdsEmpty()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 
 		// No roles added, getRoleIds should return false
 		$this->assertFalse($user->getRoleIds());
@@ -71,7 +62,7 @@ class UserTest extends TestCase {
 	 */
 	public function testSaveRoles()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -89,7 +80,7 @@ class UserTest extends TestCase {
 	 */
 	public function testSaveRolesEmpty()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -112,9 +103,8 @@ class UserTest extends TestCase {
 	 */
 	public function testRoutineAssociation()
 	{
-		$user = Woodling::saved('User');
-		$routine = Woodling::retrieve('Routine');
-		$user->routines()->save($routine);
+		$routine = Woodling::saved('Routine');
+		$user = User::find($routine->user_id);
 
 		// Check if routine was saved
 		$this->assertEquals(1, $user->routines()->count());
