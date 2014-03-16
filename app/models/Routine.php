@@ -33,4 +33,23 @@ class Routine extends \LaravelBook\Ardent\Ardent {
 		return $this->hasMany('Workout');
 	}
 
+	/**
+	 * Delete the model from the database.
+	 *
+	 * @uses Exercise::where
+	 * @uses Workout::where
+	 * @return bool|null
+	 */
+	public function delete()
+	{
+		// Delete all exercises
+		Exercise::where('routine_id', $this->id)->delete();
+
+		// Delete all workouts
+		Workout::where('routine_id', $this->id)->delete();
+
+		// Delete the routine
+		return parent::delete();
+	}
+
 }

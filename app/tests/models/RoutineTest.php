@@ -32,6 +32,56 @@ class RoutineTest extends TestCase {
 		$this->assertEquals($routine->user->username, $user->username);
 	}
 
+	public function testExerciseAssociation()
+	{
+		$routine = Woodling::saved('Routine');
+		$exercise = Woodling::retrieve('Exercise');
+		$routine->exercises()->save($exercise);
+		$this->assertEquals(1, $routine->exercises()->count());
+	}
+
+	public function testExerciseAssociationDelete()
+	{
+		$routine = Woodling::saved('Routine');
+		$exercise = Woodling::retrieve('Exercise');
+		$routine->exercises()->save($exercise);
+		$routine_id = $routine->id;
+
+		// Check if exercise was saved
+		$this->assertEquals(1, $routine->exercises()->count());
+
+		// Routine should delete successfully
+		$this->assertTrue($routine->delete());
+
+		// Deleted Routine should not have any exercises
+		$this->assertEquals(0, Exercise::where('routine_id', $routine_id)->count());
+	}
+
+	public function testWorkoutAssociation()
+	{
+		$routine = Woodling::saved('Routine');
+		$workout = Woodling::retrieve('Workout');
+		$routine->workouts()->save($workout);
+		$this->assertEquals(1, $routine->workouts()->count());
+	}
+
+	public function testWorkoutAssociationDelete()
+	{
+		$routine = Woodling::saved('Routine');
+		$workout = Woodling::retrieve('Workout');
+		$routine->workouts()->save($workout);
+		$routine_id = $routine->id;
+
+		// Check if workout was saved
+		$this->assertEquals(1, $routine->workouts()->count());
+
+		// Routine should delete successfully
+		$this->assertTrue($routine->delete());
+
+		// Deleted Routine should not have any workouts
+		$this->assertEquals(0, Workout::where('routine_id', $routine_id)->count());
+	}
+
 	public function testHasName()
 	{
 		$routine = new Routine;
