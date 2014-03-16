@@ -1,10 +1,13 @@
 <?php
 
-class Routine extends \Eloquent {
+class Routine extends \LaravelBook\Ardent\Ardent {
 
 	protected $guarded = array();
 
-	public static $rules = array();
+	public static $rules = array(
+		'user_id' => 'required',
+		'name' => 'required',
+	);
 
 	/**
 	 * Association to User Model.
