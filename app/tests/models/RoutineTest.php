@@ -3,16 +3,7 @@
 use Woodling\Woodling;
 
 class RoutineTest extends TestCase {
-
-	protected function getRoutine()
-	{
-		$routine = Woodling::retrieve('Routine');
-		$user = Woodling::saved('Admin');
-		$routine = $user->routines()->save($routine);
-
-		return $routine;
-	}
-
+	
 	public function testHasId()
 	{
 		$routine = new Routine;
