@@ -25,4 +25,12 @@ class Routine extends \LaravelBook\Ardent\Ardent {
 		return $this->hasMany('Exercise');
 	}
 
+	/**
+	 * Association to Workout Model.
+	 */
+	public function workouts()
+	{
+		return $this->hasMany('Workout');
+	}
+
 }
