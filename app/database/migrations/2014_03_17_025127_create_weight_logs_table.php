@@ -17,7 +17,7 @@ class CreateWeightLogsTable extends Migration {
 			$table->integer('user_id')->unsigned();
 			$table->decimal('weight', 3, 1);
 			$table->date('weigh_date');
-			$table->text('notes');
+			$table->text('notes')->nullable();
 			$table->timestamps();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // assumes a users table
         });

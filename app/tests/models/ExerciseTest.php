@@ -53,11 +53,25 @@ class ExerciseTest extends TestCase {
 		$this->assertEquals('Test Name', $exercise->description);
 	}
 
+	public function testDescriptionIsNullable()
+	{
+		$exercise = Woodling::retrieve('Exercise');
+		$exercise->description = null;
+		$this->assertTrue($exercise->save());
+	}
+
 	public function testHasNotes()
 	{
 		$exercise = new Exercise;
 		$exercise->notes = 'Test Name';
 		$this->assertEquals('Test Name', $exercise->notes);
+	}
+
+	public function testNotesAreNullable()
+	{
+		$exercise = Woodling::retrieve('Exercise');
+		$exercise->notes = null;
+		$this->assertTrue($exercise->save());
 	}
 
 	public function testHasCreatedAt()

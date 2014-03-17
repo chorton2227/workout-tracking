@@ -95,6 +95,13 @@ class WeightLogTest extends TestCase {
 		$this->assertEquals('Test Notes', $weight_log->notes);
 	}
 
+	public function testNotesAreNullable()
+	{
+		$weight_log = Woodling::retrieve('WeightLog');
+		$weight_log->notes = null;
+		$this->assertTrue($weight_log->save());
+	}
+
 	public function testHasCreatedAt()
 	{
 		$weight_log = new WeightLog;
