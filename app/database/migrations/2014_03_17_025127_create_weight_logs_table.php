@@ -15,7 +15,7 @@ class CreateWeightLogsTable extends Migration {
         Schema::create('weight_logs', function(Blueprint $table) {
             $table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->decimal('weight', 3, 1);
+			$table->decimal('weight', 4, 1);
 			$table->date('weigh_date');
 			$table->text('notes')->nullable();
 			$table->timestamps();
