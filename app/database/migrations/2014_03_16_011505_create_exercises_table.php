@@ -16,8 +16,8 @@ class CreateExercisesTable extends Migration {
             $table->increments('id');
 			$table->integer('routine_id')->unsigned();
 			$table->string('name');
-			$table->text('description');
-			$table->text('notes');
+			$table->text('description')->nullable();
+			$table->text('notes')->nullable();
 			$table->timestamps();
 			$table->foreign('routine_id')->references('id')->on('routines')->onDelete('cascade'); // assumes a routines table
         });
