@@ -15,6 +15,15 @@ class User extends ConfideUser {
 		return $this->hasMany('Routine');
 	}
 
+
+	/**
+	 * Association to WeightLog Model.
+	 */
+	public function weight_logs()
+	{
+		return $this->hasMany('WeightLog');
+	}
+
 	/**
 	 * Delete the model from the database.
 	 *
