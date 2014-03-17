@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('RoutinesTableSeeder');
 		$this->call('ExercisesTableSeeder');
 		$this->call('WorkoutsTableSeeder');
+		$this->call('ExerciseLogsTableSeeder');
 	}
 
 }

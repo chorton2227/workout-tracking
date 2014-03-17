@@ -17,4 +17,12 @@ class Workout extends \LaravelBook\Ardent\Ardent {
 		return $this->belongsTo('Routine');
 	}
 
+	/**
+	 * Association to ExerciseLog Model.
+	 */
+	public function exercise_logs()
+	{
+		return $this->hasMany('ExerciseLog');
+	}
+
 }
