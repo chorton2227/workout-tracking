@@ -8,6 +8,23 @@ class User extends ConfideUser {
 	use HasRole;
 
 	/**
+	 * Association to Routine Model.
+	 */
+	public function routines()
+	{
+		return $this->hasMany('Routine');
+	}
+
+
+	/**
+	 * Association to WeightLog Model.
+	 */
+	public function weight_logs()
+	{
+		return $this->hasMany('WeightLog');
+	}
+
+	/**
 	 * Delete the model from the database.
 	 *
 	 * @uses AssignedRoles::where
@@ -17,6 +34,9 @@ class User extends ConfideUser {
 	{
 		// Delete all assigned roles 
 		AssignedRoles::where('user_id', $this->id)->delete();
+
+		// Delete all routines
+		Routine::where('user_id', $this->id)->delete();
 
 		// Delete the user
 		return parent::delete();

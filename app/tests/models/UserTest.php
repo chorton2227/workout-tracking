@@ -5,20 +5,11 @@ use Woodling\Woodling;
 class UserTest extends TestCase {
 
 	/**
-	 * Test Woodling fixture for admin.
-	 */
-	public function testAdminFixture()
-	{
-		$user = Woodling::retrieve('Admin');
-		$this->assertEquals($user->username, 'admin');
-	}
-
-	/**
 	 * Make sure the delete method removes all asigned roles for the user.
 	 */
 	public function testDeleteAssignedRoles()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -42,7 +33,7 @@ class UserTest extends TestCase {
 	 */
 	public function testGetRoleIds()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 
@@ -59,7 +50,7 @@ class UserTest extends TestCase {
 	 */
 	public function testGetRoleIdsEmpty()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 
 		// No roles added, getRoleIds should return false
 		$this->assertFalse($user->getRoleIds());
@@ -71,7 +62,7 @@ class UserTest extends TestCase {
 	 */
 	public function testSaveRoles()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -89,7 +80,7 @@ class UserTest extends TestCase {
 	 */
 	public function testSaveRolesEmpty()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -105,6 +96,39 @@ class UserTest extends TestCase {
 
 		// Role should have been removed
 		$this->assertEquals(0, $user->roles()->count());
+	}
+
+	/**
+	 * Test routine association.
+	 */
+	public function testRoutineAssociation()
+	{
+		$routine = Woodling::saved('Routine');
+		$user = User::find($routine->user_id);
+
+		// Check if routine was saved
+		$this->assertEquals(1, $user->routines()->count());
+	}
+
+	/**
+	 * Test what happens to routine associations when user is deleted.
+	 * Routines should be deleted with the user.
+	 */
+	public function testDeleteRoutineAssociation()
+	{
+		$user = Woodling::saved('User');
+		$routine = Woodling::retrieve('Routine');
+		$user->routines()->save($routine);
+		$user_id = $user->id;
+
+		// Check if routine was saved
+		$this->assertEquals(1, $user->routines()->count());
+
+		// User should delete successfully
+		$this->assertTrue($user->delete());
+
+		// Deleted User should not have any routines
+		$this->assertEquals(0, Routine::where('user_id', $user_id)->count());
 	}
 
 }

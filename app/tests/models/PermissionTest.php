@@ -18,7 +18,7 @@ class PermissionTest extends TestCase {
 	 */
 	public function testDeleteAssignedRoles()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -42,7 +42,7 @@ class PermissionTest extends TestCase {
 	 */
 	public function testGetRoleIds()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 
@@ -59,7 +59,7 @@ class PermissionTest extends TestCase {
 	 */
 	public function testGetRoleIdsEmpty()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 
 		// No roles added, getRoleIds should return false
 		$this->assertFalse($user->getRoleIds());
@@ -71,7 +71,7 @@ class PermissionTest extends TestCase {
 	 */
 	public function testSaveRoles()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
@@ -89,7 +89,7 @@ class PermissionTest extends TestCase {
 	 */
 	public function testSaveRolesEmpty()
 	{
-		$user = Woodling::saved('Admin');
+		$user = Woodling::saved('User');
 		$role = Woodling::saved('RoleAdmin');
 		$role_ids = array($role->id);
 		$user_id = $user->id;
