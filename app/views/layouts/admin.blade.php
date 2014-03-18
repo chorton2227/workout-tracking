@@ -8,9 +8,9 @@
 			{{{ Lang::get('site.title') }}}
 			@show
 		</title>
-		<link href="{{ URL::asset('assets/sb-admin-v2/css/bootstrap.min.css') }}" rel="stylesheet">
-		<link href="{{ URL::asset('assets/sb-admin-v2//font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-		<link href="{{ URL::asset('assets/sb-admin-v2/css/sb-admin.css') }}" rel="stylesheet">
+		<link href="{{ URL::asset('assets/plugins/sb-admin-v2/css/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ URL::asset('assets/plugins/sb-admin-v2//font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+		<link href="{{ URL::asset('assets/plugins/sb-admin-v2/css/sb-admin.css') }}" rel="stylesheet">
 		@section('header')
 		@show
 	</head>
@@ -64,10 +64,10 @@
 		</div>
 		<!-- /#wrapper -->
 
-		<script src="{{ URL::asset('assets/sb-admin-v2/js/jquery-1.10.2.js') }}"></script>
-		<script src="{{ URL::asset('assets/sb-admin-v2/js/bootstrap.min.js') }}"></script>
-		<script src="{{ URL::asset('assets/sb-admin-v2/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-		<script src="{{ URL::asset('assets/sb-admin-v2/js/sb-admin.js') }}"></script>
+		<script src="{{ URL::asset('assets/plugins/sb-admin-v2/js/jquery-1.10.2.js') }}"></script>
+		<script src="{{ URL::asset('assets/plugins/sb-admin-v2/js/bootstrap.min.js') }}"></script>
+		<script src="{{ URL::asset('assets/plugins/sb-admin-v2/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+		<script src="{{ URL::asset('assets/plugins/sb-admin-v2/js/sb-admin.js') }}"></script>
 
 		@section('footer')
 		@show
