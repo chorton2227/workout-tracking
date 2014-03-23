@@ -236,6 +236,7 @@ class UserController extends BaseController {
 	public function profile($username)
 	{
 		$user = User::where('username', '=', $username)->first();
+		$user->load('weight_logs');
 
 		// User not found
 		if (is_null($user))
@@ -245,8 +246,9 @@ class UserController extends BaseController {
 
 		$title = Lang::get('user.site.profile');
 		$profile_image_src = Gravatar::src($user->email);
+		$weight_logs = $user->weight_logs()->orderBy('weigh_date', 'desc')->get();
 
-		return View::make('site/user/profile', compact('user', 'title', 'profile_image_src'));
+		return View::make('site/user/profile', compact('user', 'title', 'profile_image_src', 'weight_logs', 'routines'));
 	}
 
 }
