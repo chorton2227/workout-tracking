@@ -247,6 +247,7 @@ class UserController extends BaseController {
 		$title = Lang::get('user.site.profile');
 		$profile_image_src = Gravatar::src($user->email);
 		$weight_logs = $user->weight_logs()->orderBy('weigh_date', 'desc')->get();
+		$routines = $user->routines()->orderBy('name', 'asc')->get();
 
 		return View::make('site/user/profile', compact('user', 'title', 'profile_image_src', 'weight_logs', 'routines'));
 	}

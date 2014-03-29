@@ -7,3 +7,12 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+//
+// Panel
+// --------------------------------------------------
+
+/* Remove bottom margin for tables in a panel  */
+.panel .table {
+	margin-bottom:0;
+}
